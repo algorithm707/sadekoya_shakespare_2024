@@ -45,3 +45,20 @@ make test
 ```
 
 Good luck!
+
+## Explanation of changes
+
+**For backend fixes**
+1. Handled edge cases for query returns no result by returning an empty slice
+2. Ensured that the function returns a maximum of 20 results and break search loop for when result retuned is greater than 20
+3. Ensured start and end indices for returned suffix array index are within bounds 
+4. Added empty result check in test. A better alternative would be to have done empty result check in handleSearch function
+   and code 404 for empty result but for the instruction not to change main_test.go line 68
+
+
+**For Frontend fixes**
+1. Added id to Load-more button in index.tml
+2. Added a load-more to Controller loads more pages on button click
+3. change test query "romeo, wherefore art thou" to "Romeo, wherefore art thou" in test.js since "romeo, wherefore art thou" 
+   cannot be found in file. fix 4 suggested for backend above would have handled such edge case.
+

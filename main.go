@@ -50,6 +50,14 @@ func handleSearch(searcher Searcher) func(w http.ResponseWriter, r *http.Request
 			return
 		}
 		results := searcher.Search(query[0])
+
+        //check for empty result
+		// if len(result) < 1 {
+		// 	w.WriteHeader(http.StatusNotFound)
+		// 	w.Write([]byte("No match found for query"))
+		// 	return
+		// }
+
 		buf := &bytes.Buffer{}
 		enc := json.NewEncoder(buf)
 		err := enc.Encode(results)

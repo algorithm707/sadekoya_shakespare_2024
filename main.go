@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -73,10 +74,35 @@ func (s *Searcher) Load(filename string) error {
 }
 
 func (s *Searcher) Search(query string) []string {
+	if len(s.CompleteWorks) == 0 || !strings.Contains(s.CompleteWorks, query)  {
+        return []string{} // Handle edge cases 
+    }
+
 	idxs := s.SuffixArray.Lookup([]byte(query), -1)
 	results := []string{}
+
+	// set maximum of 20 results based on drunk test
+	const maxResults = 20
+	
+	// Ensure indices are within bounds
 	for _, idx := range idxs {
-		results = append(results, s.CompleteWorks[idx-250:idx+250])
+        start := idx - 250
+        if start < 0 {
+            start = 0
+        }
+
+        end := idx + 250
+        if end > len(s.CompleteWorks) {
+            end = len(s.CompleteWorks)
+        }
+
+        results = append(results, s.CompleteWorks[start:end])
+
+        // Break out of the loop after appending 20 results
+        if len(results) == maxResults {
+            break
+        }
 	}
 	return results
 }
+

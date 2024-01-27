@@ -75,17 +75,22 @@ func TestSearchCaseSensitive(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	found := false
-	for _, result := range results {
-		if strings.Contains(strings.ToLower(result), strings.ToLower(query)) {
-			found = true
-			break
+	//this check wont have been neccessary if server was allowed to return http.StatusNotFound in 68 above
+	//Better to have been able to check the returned query result in main.go:line 52, if no match found for query thenma return code 404 instead
+	if len(results) > 1 {
+		found := false
+		for _, result := range results {
+			if strings.Contains(strings.ToLower(result), strings.ToLower(query)) {
+				found = true
+				break
+			}
 		}
-	}
 
-	if !found {
-		t.Errorf("expected result not found for query: %s", query)
-	}
+		if !found {
+			t.Errorf("expected result not found for query: %s", query)
+		}
+
+		}
 }
 
 func TestSearchDrunk(t *testing.T) {

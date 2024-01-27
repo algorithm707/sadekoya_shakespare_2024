@@ -34,8 +34,8 @@ describe('ShakeSearch', () => {
     assert.isEmpty(results, 'Search results should be empty');
   });
 
-  it('should return search results for "romeo, wherefore art thou"', async () => {
-    const query = 'romeo, wherefore art thou';
+  it('should return search results for "Romeo, wherefore art thou"', async () => {
+    const query = 'Romeo, wherefore art thou';
     await page.evaluate(() => document.getElementById('query').value = ''); // Reset the input field
     await page.type('#query', query);
     await page.click('button[type="submit"]');

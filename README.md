@@ -57,8 +57,8 @@ Good luck!
 
 
 **For Frontend fixes**
-1. Added id to Load-more button in index.tml
-2. Added a load-more to Controller loads more pages on button click
+1. Added id to the Load-more button in index.tml
+2. Added load-more to Controller to loads more pages on button click
 3. change test query "romeo, wherefore art thou" to "Romeo, wherefore art thou" in test.js since "romeo, wherefore art thou" 
    cannot be found in file. fix 4 suggested for backend above would have handled such edge case.
 

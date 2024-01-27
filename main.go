@@ -51,8 +51,8 @@ func handleSearch(searcher Searcher) func(w http.ResponseWriter, r *http.Request
 		}
 		results := searcher.Search(query[0])
 
-        //check for empty result
-		// if len(result) < 1 {
+		// check for empty results
+		// if len(results) < 1 {
 		// 	w.WriteHeader(http.StatusNotFound)
 		// 	w.Write([]byte("No match found for query"))
 		// 	return
